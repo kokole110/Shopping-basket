@@ -1,1 +1,28 @@
-<p>Product id: {{product.id}}, product name: {{product.name}}</p>
+<div class="product" >
+	<mat-card class="product-card" fxLayout="column" fxLayoutAlign="space-between">
+		<div fxLayout="row" fxLayoutAlign="space-between">
+			<div class="product-info">
+				<mat-card-title class="card-title">
+					<p>{{product.name}}</p>
+	      </mat-card-title>
+	      <mat-card-subtitle>
+	      	<p *ngIf="product.imported"><i>Imported</i></p>
+	    		<p>{{product.category}}</p>
+	    	</mat-card-subtitle>
+	    </div>
+	    <div class="product-image">
+	      <img src="assets/icons/product-{{product.category}}.svg" alt="product-photo">
+	    </div>
+  	</div>
+  	
+		<div fxLayout="row" fxLayoutAlign="center center">
+      <div class="actions_btn">
+        <button mat-fab color="basic" aria-label="Add product button" (click)="onAddItem()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </div>
+  
+	</mat-card>
+</div>
+

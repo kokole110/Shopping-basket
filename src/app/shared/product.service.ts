@@ -71,11 +71,21 @@ export class ProductService {
       imported: true,
       price: 11.25,
     },
-  ]
+  ];
+
+  private basket: Product[] = [];
 
   constructor() { }
 
   getProducts() {
     return this.products.slice();
+  }
+
+  getBasketItems() {
+    return this.basket;
+  }
+
+  addToBasket(product: Product) {
+    this.basket.push(product);
   }
 }

@@ -10,9 +10,11 @@ import { Product } from './shared/interfaces';
 export class AppComponent implements OnInit {
   title = 'shoppingBasket';
   products!: Product[];
+  basket!: Product[]
   
   constructor(private productService: ProductService) {}
   ngOnInit(){
     this.products = this.productService.getProducts();
+    this.basket = this.productService.getBasketItems();
   }
 }

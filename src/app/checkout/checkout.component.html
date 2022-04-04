@@ -1,0 +1,22 @@
+<mat-card class="checkout-card" fxLayout="column" fxLayoutAlign="space-between">
+	<div fxLayout="column" fxLayoutAlign="space-between">
+		<mat-card-title class="card-title">
+			<p>Checkout</p>
+    </mat-card-title>
+    <div class="added-items" *ngIf="basket.length>0">
+    	<p *ngFor="let item of basket">1 {{item.name}}: {{item.price}}</p>
+    </div>
+    <div>
+    	<button mat-raised-button aria-label="Submit">
+	      Submit
+	    </button>
+    </div>
+	</div>
+	
+	<div fxLayout="row" fxLayoutAlign="center center">
+    <div class="actions_btn">
+      
+    </div>
+  </div>
+</mat-card>
+
