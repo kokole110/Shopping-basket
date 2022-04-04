@@ -81,11 +81,21 @@ export class ProductService {
     return this.products.slice();
   }
 
-  getBasketItems() {
+  getBasket() {
     return this.basket;
   }
 
   addToBasket(product: Product) {
     this.basket.push(product);
+  }
+
+  getReceipt(basket: Product[]) {
+    for (let item of basket) {
+      console.log(item.name, item.price)
+    }
+  }
+
+  resetBasket() {
+    this.basket = [];
   }
 }
