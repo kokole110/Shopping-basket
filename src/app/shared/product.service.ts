@@ -106,7 +106,7 @@ export class ProductService {
     }
 
     priceWithTaxes = product.price + basicSalesTax + additionalSalesTax;
-    return priceWithTaxes;
+    return Number(priceWithTaxes.toFixed(2));
   }
 
   getTotalPrice(basket: Product[]): number {
@@ -114,7 +114,7 @@ export class ProductService {
     for (let product of basket) {
       totalPrice += this.getPriceWithTaxes(product);
     }
-    return totalPrice;
+    return Number(totalPrice.toFixed(2));
   }
 
   getSalesTaxes(basket: Product[]): number {
@@ -123,7 +123,7 @@ export class ProductService {
       totalPriceWithoutTaxes += product.price;
     }
 
-    return this.getTotalPrice(basket) - totalPriceWithoutTaxes;
+    return Number((this.getTotalPrice(basket) - totalPriceWithoutTaxes).toFixed(2));
   }
 
 }
