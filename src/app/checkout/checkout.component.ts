@@ -10,7 +10,7 @@ export class CheckoutComponent implements OnInit {
 
   basket!: Product[];
   isPaid: boolean = false;
-  constructor(private productService: ProductService) { }
+  constructor(public productService: ProductService) { }
 
   ngOnInit(): void {
     this.basket = this.productService.getBasket();
@@ -18,7 +18,6 @@ export class CheckoutComponent implements OnInit {
 
   onSubmit(){
     this.isPaid = true;
-    this.productService.getReceipt(this.basket);
   }
 
   onReset() {

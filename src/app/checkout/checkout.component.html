@@ -20,7 +20,9 @@
 			<p>Your receipt</p>
     </mat-card-title>
     <div class="added-items">
-    	<p *ngFor="let item of basket">1 {{ item.name }}{{ item.imported ? " (imported)" : "" }}: {{ item.price | currency }}</p>
+    	<p *ngFor="let item of basket">1 {{ item.name }}{{ item.imported ? " (imported)" : "" }}: {{ productService.getPriceWithTaxes(item) | currency }}</p>
+    	<p>Sales Taxes: {{ productService.getSalesTaxes(basket) | currency }}</p>
+    	<p>Total: {{ productService.getTotalPrice(basket) | currency }}</p>
     </div>
 	</div>
 </mat-card>

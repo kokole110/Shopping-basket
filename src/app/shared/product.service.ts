@@ -77,25 +77,53 @@ export class ProductService {
 
   constructor() { }
 
-  getProducts() {
+  getProducts(): Product[] {
     return this.products.slice();
   }
 
-  getBasket() {
+  getBasket(): Product[] {
     return this.basket;
   }
 
-  addToBasket(product: Product) {
+  addToBasket(product: Product): void {
     this.basket.push(product);
   }
 
-  getReceipt(basket: Product[]) {
-    for (let item of basket) {
-      console.log(item.name, item.price)
-    }
-  }
-
-  resetBasket() {
+  resetBasket(): void {
     this.basket = [];
   }
+
+  getPriceWithTaxes(product: Product): number {
+    const noTaxCategories: string[] = ['Books', 'Food', 'Medical Products'];
+    let basicSalesTax = 0;
+    let additionalSalesTax = 0;
+    let priceWithTaxes: number;
+    if (!noTaxCategories.includes(product.category)) {
+      basicSalesTax = (Math.ceil((product.price * 0.1) * 20) / 20);
+    } 
+    if (product.imported) {
+      additionalSalesTax = (Math.ceil((product.price * 0.05) * 20) / 20);
+    }
+
+    priceWithTaxes = product.price + basicSalesTax + additionalSalesTax;
+    return priceWithTaxes;
+  }
+
+  getTotalPrice(basket: Product[]): number {
+    let totalPrice = 0;
+    for (let product of basket) {
+      totalPrice += this.getPriceWithTaxes(product);
+    }
+    return totalPrice;
+  }
+
+  getSalesTaxes(basket: Product[]): number {
+    let totalPriceWithoutTaxes = 0;
+    for (let product of basket) {
+      totalPriceWithoutTaxes += product.price;
+    }
+
+    return this.getTotalPrice(basket) - totalPriceWithoutTaxes;
+  }
+
 }
